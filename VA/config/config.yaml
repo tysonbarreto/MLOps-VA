@@ -1,0 +1,6 @@
+split:
+  test_size : 0.2
+  train_size : 0.8
+features:
+  feature_1:
+params:
