@@ -24,13 +24,11 @@ def save_load_pickle(filepath:str, data:Any=None, save:bool=False, load:bool=Fal
             data = pickle.load(handle)
         filename= os.path.split(filepath)[-1].split('.')[0]
         filepath = os.path.split(os.path.relpath(filepath))[0]
-        logger.info(f"{filename} saved in {filepath} successfully")
+        logger.info(f"{filename} loaded from {filepath} successfully")
         return data
     elif (save==True) & (load==True):
         logger.info(f"either save or load at one time")
         raise ValueError("either save or load at one time")
-        
-
 
 def save_parquet(filepath:str ,df:pd.DataFrame):
     try:
@@ -42,9 +40,9 @@ def save_parquet(filepath:str ,df:pd.DataFrame):
     except Exception as e:
         logger.info(VAException(e, sys))
 
-def load_parquet(filepath:str ,df:pd.DataFrame):
+def load_parquet(filepath:str):
     try:
-        df = pd.read_parquet(filepath, engine='pyarrow')
+        df = pd.read_parquet(filepath)
         filename= os.path.split(filepath)[-1].split('.')[0]
         filepath = os.path.split(os.path.relpath(filepath))[0]
         logger.info(f"{filename} loaded from {filepath} successfully")
